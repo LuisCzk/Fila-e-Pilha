@@ -1,0 +1,106 @@
+class Main {
+
+    private No primeiro;
+    private No ultimo;
+    private String nomeDaFila;
+  
+
+  public Main(String nome){
+    nomeDaFila = nome;
+    primeiro = ultimo = null;
+  }
+
+  public Main(){
+    nomeDaFila = "Fila Teste";
+    primeiro = ultimo = null;
+  }
+
+  public void Enfileira(int item){
+    if(Vazia())
+      primeiro = ultimo = new No(item);
+    else{
+      ultimo.setProx(new No(item));
+      ultimo = ultimo.getProx();
+    }
+  }
+
+  public int Desenfileira(){
+    if(Vazia()){
+      return 0;
+    }
+    int item = primeiro.getDado();
+
+    if(primeiro == ultimo)
+      primeiro = ultimo = null;
+    else
+      primeiro = primeiro.getProx();
+    return item;
+  }
+
+  public boolean Vazia(){
+    return primeiro == null;
+  }
+
+  public int imprimeFila(){
+    if(Vazia()){
+      return 0;
+    }
+    No atual = primeiro;
+    int contador = 0;
+
+    while(atual != null){
+        System.out.println(atual.getDado());
+
+        atual = atual.getProx();
+ 
+    }
+    return 1;
+  }
+
+  public static void main(String[] args) {
+    Main f1 = new Main();
+
+    f1.Enfileira(4);
+    f1.Enfileira(6);
+    f1.Enfileira(5);
+    f1.Enfileira(7);
+
+    f1.imprimeFila();
+    
+  }
+}
+
+
+
+
+
+
+
+
+No-
+public class No{
+  private int dado;
+  private No prox;
+
+  public No getProx(){
+    return this.prox;
+  }
+
+  public void setProx(No prox){
+    this.prox = prox;
+  }
+
+  public int getDado(){
+    return this.dado;
+  }
+
+  public No(int dadonovo){
+    dado = dadonovo;
+    prox = null;
+  }
+
+  public No(int dadonovo, No ligacao){
+    dado = dadonovo;
+    prox = ligacao;
+  }
+}
