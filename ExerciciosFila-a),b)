@@ -1,0 +1,80 @@
+A e B-
+class Main {
+
+    private No primeiro;
+    private No ultimo;
+    private String nomeDaFila;
+  
+
+  public Main(String nome){
+    nomeDaFila = nome;
+    primeiro = ultimo = null;
+  }
+
+  public Main(){
+    nomeDaFila = "Fila Teste";
+    primeiro = ultimo = null;
+  }
+
+  public void Enfileira(String item){
+    if(Vazia())
+      primeiro = ultimo = new No(item);
+    else{
+      ultimo.setProx(new No(item));
+      ultimo = ultimo.getProx();
+    }
+  }
+
+  public String Desenfileira(){
+    if(Vazia()){
+      return null;
+    }
+    String item = primeiro.getDado();
+
+    if(primeiro == ultimo)
+      primeiro = ultimo = null;
+    else
+      primeiro = primeiro.getProx();
+    return item;
+  }
+
+  public boolean Vazia(){
+    return primeiro == null;
+  }
+
+  public String exibe_inicio(){
+    if(Vazia()){
+      return null;
+    }
+    String item = primeiro.getDado();
+
+    System.out.println(item);
+
+    return item;
+  }
+
+  public String exibe_fim(){
+    if(Vazia()){
+      return null;
+    }
+    String item = ultimo.getDado();
+
+    System.out.println(item);
+
+    return item;
+  }
+
+
+
+  public static void main(String[] args) {
+    Main f1 = new Main();
+
+    f1.Enfileira("e101");
+    f1.Enfileira("e102");
+
+    f1.exibe_inicio();
+    f1.exibe_fim();
+
+    
+  }
+}
